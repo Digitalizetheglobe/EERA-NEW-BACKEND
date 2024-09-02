@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { Sequelize } = require('sequelize');
-const { add_notices, user_registration } = require('./models'); // Ensure this import is correct
+const { add_notices, user_registration } = require('./models'); 
 const employeeRoutes = require('./routes/employee');
 const adminRoutes = require('./routes/admin');
 
