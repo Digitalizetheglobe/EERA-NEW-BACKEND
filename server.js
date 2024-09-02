@@ -7,16 +7,17 @@ const employeeRoutes = require('./routes/employee');
 const adminRoutes = require('./routes/admin');
 
 const app = express();
-const port = 8000;
+const port = 8080;
 
 app.use(bodyParser.json());
 
 // Enable CORS for all routes and methods
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: '*', // Allow requests from any origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 app.use('/employee', employeeRoutes);
 app.use('/admin', adminRoutes);
