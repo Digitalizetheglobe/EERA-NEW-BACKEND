@@ -55,6 +55,7 @@ app.post('/notices', async (req, res) => {
 });
 
 // Routes for user_registration
+// sdfja
 app.get('/users', async (req, res) => {
   try {
     const users = await user_registration.findAll();
