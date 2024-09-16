@@ -1,10 +1,12 @@
 {
-    "development": {
-      "username": "root",
-      "password": "root",
-      "database": "eera_main_two",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-    }
+ 
+    "production": {
+  "username": "eera_main",
+  "password": "Str0ngP@ssw0rd!2024",
+  "database": "eera_main",
+  "host": "127.0.0.1",
+  "dialect": "mysql"
+}
+
   }
   
