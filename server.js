@@ -7,7 +7,7 @@ const employeeRoutes = require('./routes/employee');
 const adminRoutes = require('./routes/admin');
 
 const app = express();
-const port = 8081;
+const port = 8082;
 
 app.use(bodyParser.json());
 
