@@ -15,6 +15,17 @@ router.post('/register', async (req, res) => {
   }
 });
 
+// Get all registered Admins
+router.get('/admins', async (req, res) => {
+  try {
+    const admins = await Admin.findAll();
+    res.status(200).json(admins);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch admin details' });
+  }
+});
+
+
 // Admin Login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;

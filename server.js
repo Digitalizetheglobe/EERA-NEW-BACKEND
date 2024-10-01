@@ -8,12 +8,13 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 const port = 8082;
+// const port = 8000;
 
 app.use(bodyParser.json());
 
 // Enable CORS for all routes and methods
 app.use(cors({
-  origin: '*', // Allow requests from any origin
+  origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -37,7 +38,6 @@ app.post('/notices', async (req, res) => {
   const { notice_title, notice_description, date, lawyer_name, location } = req.body;
 
   try {
-    // Validate and log data
     console.log('Received data:', { notice_title, notice_description, date, lawyer_name, location });
 
     const notice = await add_notices.create({
@@ -51,6 +51,52 @@ app.post('/notices', async (req, res) => {
   } catch (error) {
     console.error('Failed to publish notice:', error);
     res.status(500).json({ error: 'Failed to publish notice', details: error.message });
+  }
+});
+
+
+// POST API to create a new notice TEST API'S
+// app.post('/notices', async (req, res) => {
+//   const { notice_title, notice_description, date, lawyer_name, location } = req.body;
+
+//   try {
+//     // Validate and log data
+//     console.log('Received data:', { notice_title, notice_description, date, lawyer_name, location });
+
+//     const notice = await add_notices.create({
+//       notice_title: notice_title || null,
+//       notice_description: notice_description || null,
+//       date: date ? new Date(date) : null,
+//       lawyer_name: lawyer_name || null,
+//       location: location || null
+//     });
+//     res.status(201).json(notice);
+//   } catch (error) {
+//     console.error('Failed to publish notice:', error);
+//     res.status(500).json({ error: 'Failed to publish notice', details: error.message });
+//   }
+// });
+
+
+
+// GET API to fetch a notice by ID
+app.get('/notices/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find notice by primary key (ID)
+    const notice = await add_notices.findByPk(id);
+
+    if (!notice) {
+      // Return a 404 error if the notice is not found
+      return res.status(404).json({ error: `Notice with ID ${id} not found` });
+    }
+
+    // Return the found notice
+    res.status(200).json(notice);
+  } catch (error) {
+    console.error('Failed to fetch notice:', error);
+    res.status(500).json({ error: 'Failed to fetch notice', details: error.message });
   }
 });
 
